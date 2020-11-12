@@ -22,10 +22,9 @@ public class OmdbApiCaller {
         String movieJson = restTemplate.getForObject(url, String.class);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Movie movie = null;
+        Movie movie = new Movie();
         try {
             JsonNode jsonNode = objectMapper.readTree(movieJson);
-            movie = new Movie();
             String resultTitle = jsonNode.get("Title").asText();
             movie.setTitle(resultTitle);
         } catch (JsonProcessingException e) {
